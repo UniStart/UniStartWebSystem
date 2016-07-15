@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace Unistart.Models
+﻿namespace Unistart.Models
 {
     public class User
     {
@@ -11,6 +8,5 @@ namespace Unistart.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public string University { get; set; }
-        public IEnumerable<Comment> Comments { get; set; }
     }
 }
