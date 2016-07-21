@@ -1,17 +1,27 @@
 ﻿namespace UniStart.Data
 {
+    using System;
     using System.Data.Entity;
     using Unistart.Models;
 
-    public class UniStartContext : DbContext
+    public class UniStartContext : DbContext, IUniStartDbContext
     {
         public UniStartContext()
             : base("UniStartDatabase")
         {
         }
 
-        public DbSet<Topic> Topics { get; set; }
-        public DbSet<Lecture> Lectures { get; set; }
-        public DbSet<User> Users { get; set; }
+        public virtual IDbSet<Topic> Topics { get; set; }
+        public virtual IDbSet<Lecture> Lectures { get; set; }
+
+        public new void SaveChanges()
+        {
+            base.SaveChanges();
+        }
+
+        public IDbSet<TEntity> Set<TEntity>() where TEntity : class
+        {
+            return base.Set<TEntity>();
+        }
     }
 }
