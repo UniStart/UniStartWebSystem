@@ -19,7 +19,8 @@
         [HttpGet]
         public IEnumerable<Lecture> GetAll()
         {
-            var allLectures = lecturesRepository.All();
+            var allLectures = lecturesRepository.All()
+                .Where(l => l.isDeleted == false);
 
             return allLectures;
         }
