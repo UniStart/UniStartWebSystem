@@ -1,4 +1,6 @@
-﻿namespace UniStart.Unit.Tests
+﻿using UniStart.Common;
+
+namespace UniStart.Unit.Tests
 {
     using NUnit.Framework;
     using UniStart.Controllers;
@@ -83,7 +85,7 @@
             var result = actionResult as BadRequestErrorMessageResult;
 
             Assert.IsInstanceOf<BadRequestErrorMessageResult>(actionResult);
-            Assert.AreEqual("Such lecture doesn't exist.", result.Message);
+            Assert.AreEqual(GlobalConstants.NonExistingLecture, result.Message);
 
             Assert.IsNotNull(actionResult);
         }
@@ -114,7 +116,7 @@
             var result = actionResult as BadRequestErrorMessageResult;
 
             Assert.IsInstanceOf<BadRequestErrorMessageResult>(actionResult);
-            Assert.AreEqual("Lecture does not exist.", result.Message);
+            Assert.AreEqual(GlobalConstants.NonExistingLecture, result.Message);
 
             Assert.IsNotNull(actionResult);
         }

@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{247AFFCE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniStart.Unit.Tests", "UniStart.Unit.Tests\UniStart.Unit.Tests.csproj", "{DB609A41-FC1F-44AF-853A-60F1402A23C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniStart.Common", "UniStart.Common\UniStart.Common.csproj", "{D26F7ABD-A676-4E1A-A986-90B291B73C19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{DB609A41-FC1F-44AF-853A-60F1402A23C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB609A41-FC1F-44AF-853A-60F1402A23C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB609A41-FC1F-44AF-853A-60F1402A23C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D26F7ABD-A676-4E1A-A986-90B291B73C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D26F7ABD-A676-4E1A-A986-90B291B73C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D26F7ABD-A676-4E1A-A986-90B291B73C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D26F7ABD-A676-4E1A-A986-90B291B73C19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

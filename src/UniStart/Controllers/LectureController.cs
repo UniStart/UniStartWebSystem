@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using UniStart.Common;
 
 namespace UniStart.Controllers
 {
@@ -36,7 +37,7 @@ namespace UniStart.Controllers
 
             if (lecture == null)
             {
-                return BadRequest("Such lecture doesn't exist.");
+                return BadRequest(GlobalConstants.NonExistingLecture);
             }
             return Ok(lecture);
         }
@@ -53,7 +54,7 @@ namespace UniStart.Controllers
 
             if (lectures.Count == 0)
             {
-                return BadRequest("Lecture does not exist.");
+                return BadRequest(GlobalConstants.NonExistingLecture);
             }
 
             return Ok(lectures);
@@ -103,7 +104,7 @@ namespace UniStart.Controllers
             
             if (lecture == null)
             {
-                return BadRequest("Such lecture doesn't exist.");
+                return BadRequest(GlobalConstants.NonExistingLecture);
             }
 
             lecture.IsDeleted = true;
