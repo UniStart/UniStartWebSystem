@@ -192,6 +192,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\JsonConfigurationAttribute.cs" />
     <Compile Include="Controllers\LectureController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="DependencyInjection\DependencyInjection.cs" />

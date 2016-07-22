@@ -1,15 +1,14 @@
-﻿using System.Net;
-using UniStart.Common;
-
-namespace UniStart.Controllers
+﻿namespace UniStart.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
     using Unistart.Models;
     using UniStart.Data.Repositories;
     using System.Web.Http;
+    using UniStart.Common;
 
     // TODO: Make the endpoints async
+    [JsonConfiguration]
     public class LectureController : ApiController
     {
         private readonly IRepository<Lecture> lecturesRepository;
