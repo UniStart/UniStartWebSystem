@@ -1,4 +1,6 @@
-﻿namespace UniStart.Controllers
+﻿using System.Net;
+
+namespace UniStart.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -20,51 +22,72 @@
         public IEnumerable<Lecture> GetAll()
         {
             var allLectures = lecturesRepository.All()
-                .Where(l => l.isDeleted == false);
+                .Where(l => l.IsDeleted == false);
 
             return allLectures;
         }
 
 
         [HttpGet]
-        public Lecture GetGameById(int id)
+        public IHttpActionResult GetLectureById(int id)
         {
             Lecture lecture = lecturesRepository.All()
-                .First(a => a.Id == id);
+                .FirstOrDefault(a => a.Id == id);
 
-            return lecture;
+            if (lecture == null)
+            {
+                return BadRequest("Such lecture doesn't exist.");
+            }
+            return Ok(lecture);
         }
 
         [HttpGet]
         public IHttpActionResult SearchLectureByName(string name)
         {
-            var lectures = lecturesRepository.All()
-                .Where(lec => lec.Title == name).ToList();
+            var lectures = 
+                lecturesRepository.All()
+                .Where(
+                    lec => lec.Title.ToLower().Contains(name) 
+                    && lec.IsDeleted == false)
+                    .ToList();
 
             if (lectures.Count == 0)
             {
-                return BadRequest("Lectures not found");
+                return BadRequest("Lecture does not exist.");
             }
 
             return Ok(lectures);
         }
 
         [HttpPost]
-        public void CreateLecture(Lecture lecture)
+        public IHttpActionResult CreateLecture(Lecture lecture)
         {
+            if (lecture == null)
+            {
+                return BadRequest("Lecture can't be null.");
+            }
+
             lecturesRepository.Add(lecture);
             lecturesRepository.SaveChanges();
+
+            return Ok(lecture);
         }
 
         [HttpPost]
-        public IHttpActionResult UpdateLecture(Lecture updatedLecture)
+        public IHttpActionResult UpdateLecture(int id, Lecture updatedLecture)
         {
-            int id = updatedLecture.Id;
-            var oldLecture = lecturesRepository.All().First(l => l.Id == id);
+            if (id != updatedLecture.Id)
+            {
+                return BadRequest("Wrong lecture id.");
+            }
 
+            var oldLecture = lecturesRepository
+                .All().FirstOrDefault(l => l.Id == id);
+
+            // If we can't find such lecture, create a new one
             if (oldLecture == null)
             {
-                return BadRequest("Such lecture doesn't exist");
+                lecturesRepository.Add(updatedLecture);
             }
 
             oldLecture = updatedLecture;
@@ -80,10 +103,10 @@
             
             if (lecture == null)
             {
-                return BadRequest("Such lecture doesn't exist");
+                return BadRequest("Such lecture doesn't exist.");
             }
 
-            lecture.isDeleted = true;
+            lecture.IsDeleted = true;
 
             return Ok($"Lecture with {id} is deleted");
         }
