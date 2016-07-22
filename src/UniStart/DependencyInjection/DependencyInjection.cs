@@ -1,13 +1,12 @@
-﻿using Autofac.Integration.Mvc;
-using UniStart.Controllers;
-
-namespace UniStart.DependencyInjection
+﻿namespace UniStart.DependencyInjection
 {
     using System;
     using Autofac;
     using Unistart.Models;
     using UniStart.Data;
     using UniStart.Data.Repositories;
+    using Autofac.Integration.Mvc;
+    using UniStart.Controllers;
 
     public class DependencyInjection
     {
@@ -22,7 +21,7 @@ namespace UniStart.DependencyInjection
 
             // Controllers
             builder.RegisterControllers(typeof(LectureController).Assembly);
-
+            
             return builder.Build();
         }
     }
