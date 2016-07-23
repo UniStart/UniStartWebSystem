@@ -19,12 +19,12 @@
         }
 
         [HttpGet]
-        public IEnumerable<Lecture> GetAll()
+        public IHttpActionResult GetAll()
         {
             var allLectures = lecturesRepository.All()
                 .Where(l => l.IsDeleted == false);
 
-            return allLectures;
+            return Ok(allLectures.ToList());
         }
 
 
@@ -97,9 +97,10 @@
         }
 
         [HttpPost]
-        public IHttpActionResult DeleteLectureById(int id)
+        public IHttpActionResult DeleteLecture(int id)
         {
-            var lecture = lecturesRepository.All().First(l => l.Id == id);
+            var lecture = lecturesRepository.All()
+                .FirstOrDefault(l => l.Id == id);
             
             if (lecture == null)
             {
@@ -107,6 +108,7 @@
             }
 
             lecture.IsDeleted = true;
+            lecturesRepository.SaveChanges();
 
             return Ok($"Lecture with {id} is deleted");
         }

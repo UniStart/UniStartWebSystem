@@ -39,7 +39,10 @@
         public void GetAll_InNormalConditions_ShouldReturnOnlyTheAvailableLectures()
         {
             lectureRepositorMock.Setup(a => a.All()).Returns(mockLectures.AsQueryable());
-            var allLectures = controller.GetAll().ToList();
+
+            IHttpActionResult actionResult = controller.GetAll();
+            var content = actionResult as OkNegotiatedContentResult<List<Lecture>>;
+            var allLectures = content.Content;
 
             Assert.IsNotNull(allLectures);
             Assert.AreEqual(1, allLectures.Count);
@@ -196,6 +199,38 @@
 
             AssertLecturesEqual(updatedLecture, content);
         }
+
+        [Test]
+        public void DeleteLecture_InNormalCondition_ShouldReturnSuccessMessageWithId()
+        {
+            lectureRepositorMock.Setup(a => a.All()).Returns(mockLectures.AsQueryable());
+
+            int id = 12;
+            IHttpActionResult actionResult = controller.DeleteLecture(id);
+
+            var result = actionResult as OkNegotiatedContentResult<string>;
+            var content = result.Content;
+
+            Assert.IsNotNull(content);
+            Assert.AreEqual(($"Lecture with {id} is deleted"), content);
+        }
+
+
+        [Test]
+        public void DeleteLecture_WhenLectureDoesntExist_ShouldReturnErrorMessage()
+        {
+            int id = 12;
+            IHttpActionResult actionResult = controller.DeleteLecture(id);
+
+            var result = actionResult as BadRequestErrorMessageResult;
+
+            Assert.IsNotNull(actionResult);
+            Assert.IsInstanceOf<BadRequestErrorMessageResult>(actionResult);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(GlobalConstants.NonExistingLecture, result.Message);
+        }
+
+
 
         private void AssertLecturesEqual(Lecture expected, Lecture actual)
         {
