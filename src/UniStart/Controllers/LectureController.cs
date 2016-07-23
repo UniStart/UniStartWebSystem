@@ -87,12 +87,27 @@
             if (oldLecture == null)
             {
                 lecturesRepository.Add(updatedLecture);
+                lecturesRepository.SaveChanges();
+
+                return Ok(updatedLecture);
             }
 
-            oldLecture = updatedLecture;
+            MapLectureFields(oldLecture, updatedLecture);
+
+            lecturesRepository.Update(oldLecture);
             lecturesRepository.SaveChanges();
 
             return Ok(updatedLecture);
+        }
+
+        private void MapLectureFields(Lecture oldLecture, Lecture updatedLecture)
+        {
+            oldLecture.Title = updatedLecture.Title;
+            oldLecture.DatePublished = updatedLecture.DatePublished;
+            oldLecture.IsDeleted = updatedLecture.IsDeleted;
+            oldLecture.Presentation = updatedLecture.Presentation;
+            oldLecture.TextFile = updatedLecture.TextFile;
+            oldLecture.VideoUrl = updatedLecture.VideoUrl;
         }
 
         [HttpPost]
@@ -107,9 +122,11 @@
             }
 
             lecture.IsDeleted = true;
+
+            lecturesRepository.Update(lecture);
             lecturesRepository.SaveChanges();
 
-            return Ok($"Lecture with {id} is deleted");
+            return Ok($"Lecture with Id = {id} is deleted");
         }
     }
 }

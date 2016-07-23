@@ -2,6 +2,7 @@
 {
     using System.Web.Http;
 
+    [JsonConfiguration]
     public class PingController : ApiController
     {
         [HttpGet]

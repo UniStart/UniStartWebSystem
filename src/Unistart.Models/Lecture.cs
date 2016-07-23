@@ -1,8 +1,10 @@
-﻿namespace Unistart.Models
+﻿using System.Runtime.Serialization;
+
+namespace Unistart.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-
+    
     public class Lecture
     {
         [Key]
@@ -10,7 +12,7 @@
 
         [Required]
         [MinLength(3)]
-        [MaxLength(90)] 
+        [MaxLength(90)]
         public string Title { get; set; }
         public DateTime DatePublished { get; set; }
         public string VideoUrl { get; set; }

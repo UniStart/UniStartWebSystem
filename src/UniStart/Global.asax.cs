@@ -1,14 +1,7 @@
-﻿using System.Reflection;
-using System.Web.Http;
-using Autofac.Integration.WebApi;
-using Unistart.Models;
-using UniStart.Controllers;
-using UniStart.Data;
-using UniStart.Data.Repositories;
-
-namespace UniStart
+﻿namespace UniStart
 {
-    using Autofac;
+    using System.Web.Http;
+    using Autofac.Integration.WebApi;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Optimization;
@@ -44,6 +37,9 @@ namespace UniStart
             // Set the dependency resolver for MVC.
             var mvcResolver = new AutofacDependencyResolver(container);
             DependencyResolver.SetResolver(mvcResolver);
+
+            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            json.UseDataContractJsonSerializer = true;
         }
     }
 }

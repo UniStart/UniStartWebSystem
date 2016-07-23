@@ -212,7 +212,7 @@
             var content = result.Content;
 
             Assert.IsNotNull(content);
-            Assert.AreEqual(($"Lecture with {id} is deleted"), content);
+            Assert.AreEqual(($"Lecture with Id = {id} is deleted"), content);
         }
 
 
