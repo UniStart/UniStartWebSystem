@@ -1,6 +1,5 @@
 ﻿namespace UniStart.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using Unistart.Models;
     using UniStart.Data.Repositories;

@@ -1,4 +1,8 @@
-﻿namespace UniStart.DependencyInjection
+﻿using System.Reflection;
+using System.Web.Http;
+using Autofac.Integration.WebApi;
+
+namespace UniStart.DependencyInjection
 {
     using System;
     using Autofac;
@@ -10,7 +14,7 @@
 
     public class DependencyInjection
     {
-        public static IContainer Register(Action<ContainerBuilder> bindingOverride = null)
+        public static IContainer RegisterContainer(Action<ContainerBuilder> bindingOverride = null)
         {
             var builder = new ContainerBuilder();
             
@@ -20,8 +24,10 @@
             builder.RegisterType<Repository<Topic>>().As<IRepository<Topic>>();
 
             // Controllers
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterControllers(typeof(LectureController).Assembly);
-            
+            builder.RegisterControllers(typeof(PingController).Assembly);
+
             return builder.Build();
         }
     }

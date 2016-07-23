@@ -1,4 +1,12 @@
-﻿namespace UniStart
+﻿using System.Reflection;
+using System.Web.Http;
+using Autofac.Integration.WebApi;
+using Unistart.Models;
+using UniStart.Controllers;
+using UniStart.Data;
+using UniStart.Data.Repositories;
+
+namespace UniStart
 {
     using Autofac;
     using System.Web;
@@ -13,11 +21,29 @@
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            IContainer container = DependencyInjection.DependencyInjection.Register();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            GlobalConfiguration.Configure(configuration =>
+            {
+                configuration.MapHttpAttributeRoutes();
+                configuration.Routes.MapHttpRoute(
+                    name: "DefaultApi",
+                    routeTemplate: "api/{controller}/{action}/{id}",
+                    defaults: new {id = RouteParameter.Optional});
+            });
+
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            
+            var container = DependencyInjection.DependencyInjection.RegisterContainer();
+
+            // Set the dependency resolver for Web API.
+            var webApiResolver = new AutofacWebApiDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = webApiResolver;
+
+            // Set the dependency resolver for MVC.
+            var mvcResolver = new AutofacDependencyResolver(container);
+            DependencyResolver.SetResolver(mvcResolver);
         }
     }
 }
