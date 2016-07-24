@@ -1,6 +1,5 @@
 ﻿namespace UniStart.Data
 {
-    using System;
     using System.Data.Entity;
     using Unistart.Models;
 

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3BD3FD65-DDF9-42FD-A063-844C52A77691}</ProjectGuid>
+    <ProjectGuid>{DB609A41-FC1F-44AF-853A-60F1402A23C6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UniStart.Data</RootNamespace>
-    <AssemblyName>UniStart.Data</AssemblyName>
+    <RootNamespace>UniStart.Unit.Tests</RootNamespace>
+    <AssemblyName>UniStart.Unit.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,32 +30,53 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="Moq, Version=4.5.3.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.5.3\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUniStartDbContext.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="UniStartContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LectureControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UniStart.Common\UniStart.Common.csproj">
+      <Project>{D26F7ABD-A676-4E1A-A986-90B291B73C19}</Project>
+      <Name>UniStart.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UniStart.Data\UniStart.Data.csproj">
+      <Project>{3BD3FD65-DDF9-42FD-A063-844C52A77691}</Project>
+      <Name>UniStart.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Unistart.Models\UniStart.Models.csproj">
-      <Project>{b171e0b3-ef30-4d7d-bdaa-476b2937f9b8}</Project>
+      <Project>{B171E0B3-EF30-4D7D-BDAA-476B2937F9B8}</Project>
       <Name>UniStart.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UniStart\UniStart.csproj">
+      <Project>{5A671BF0-459D-48E0-93AD-D2A9D2AD2002}</Project>
+      <Name>UniStart</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
