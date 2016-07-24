@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace Unistart.Models
+﻿namespace Unistart.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;

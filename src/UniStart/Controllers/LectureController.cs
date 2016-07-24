@@ -5,8 +5,7 @@
     using UniStart.Data.Repositories;
     using System.Web.Http;
     using UniStart.Common;
-
-    // TODO: Make the endpoints async
+    
     [JsonConfiguration]
     public class LectureController : ApiController
     {
@@ -25,7 +24,6 @@
 
             return Ok(allLectures.ToList());
         }
-
 
         [HttpGet]
         public IHttpActionResult GetLectureById(int id)
@@ -100,16 +98,6 @@
             return Ok(updatedLecture);
         }
 
-        private void MapLectureFields(Lecture oldLecture, Lecture updatedLecture)
-        {
-            oldLecture.Title = updatedLecture.Title;
-            oldLecture.DatePublished = updatedLecture.DatePublished;
-            oldLecture.IsDeleted = updatedLecture.IsDeleted;
-            oldLecture.Presentation = updatedLecture.Presentation;
-            oldLecture.TextFile = updatedLecture.TextFile;
-            oldLecture.VideoUrl = updatedLecture.VideoUrl;
-        }
-
         [HttpPost]
         public IHttpActionResult DeleteLecture(int id)
         {
@@ -127,6 +115,16 @@
             lecturesRepository.SaveChanges();
 
             return Ok($"Lecture with Id = {id} is deleted");
+        }
+        
+        private void MapLectureFields(Lecture oldLecture, Lecture updatedLecture)
+        {
+            oldLecture.Title = updatedLecture.Title;
+            oldLecture.DatePublished = updatedLecture.DatePublished;
+            oldLecture.IsDeleted = updatedLecture.IsDeleted;
+            oldLecture.Presentation = updatedLecture.Presentation;
+            oldLecture.TextFile = updatedLecture.TextFile;
+            oldLecture.VideoUrl = updatedLecture.VideoUrl;
         }
     }
 }

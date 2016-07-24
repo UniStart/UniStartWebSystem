@@ -191,7 +191,7 @@
 
             var result = actionResult as OkNegotiatedContentResult<Lecture>;
             var content = result.Content;
-
+            
             Assert.IsNotNull(result);
 
             lectureRepositorMock.Verify(r => r.Add(updatedLecture));
@@ -215,7 +215,6 @@
             Assert.AreEqual(($"Lecture with Id = {id} is deleted"), content);
         }
 
-
         [Test]
         public void DeleteLecture_WhenLectureDoesntExist_ShouldReturnErrorMessage()
         {
@@ -229,8 +228,6 @@
             Assert.IsNotNull(result);
             Assert.AreEqual(GlobalConstants.NonExistingLecture, result.Message);
         }
-
-
 
         private void AssertLecturesEqual(Lecture expected, Lecture actual)
         {
