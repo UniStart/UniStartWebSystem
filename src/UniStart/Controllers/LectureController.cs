@@ -6,6 +6,7 @@
     using System.Web.Http;
     using UniStart.Common;
     
+    // TODO: Add ModelState is valid    
     [JsonConfiguration]
     public class LectureController : ApiController
     {

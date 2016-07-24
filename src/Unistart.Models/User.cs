@@ -1,13 +1,21 @@
 ﻿namespace Unistart.Models
 {
-    public class User
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    public class User : IdentityUser
     {
-        public int Id { get; set; }
+        [Required]
+        [MaxLength(15)]
         public string FirstName { get; set; }
+        [Required]
+        [MaxLength(15)]
         public string LastName { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        
         public string University { get; set; }
-        public string Email { get; set; }
+        
+        [Required]
+        public DateTime JoinDate { get; set; }
     }
 }
