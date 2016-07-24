@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using UniStart.Data;
-
-namespace UniStart.Authentication
+﻿namespace UniStart.Authentication
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using UniStart.Data;
     using Microsoft.AspNet.Identity;
     using Unistart.Models;
 
@@ -13,7 +12,7 @@ namespace UniStart.Authentication
         {
         }
 
-        public static UserManager CreateUserContext()
+        public static UserManager CreateUserManager()
         {
             var appDbContext = new UniStartContext();
             var appUserManager = new UserManager(new UserStore<User>(appDbContext));

@@ -24,6 +24,7 @@ namespace UniStart.Data.Migrations
                 EmailConfirmed = true,
                 FirstName = "Taiseer",
                 LastName = "Joudeh",
+                University = "TYSofia",
                 JoinDate = DateTime.Now.AddYears(-3)
             };
 

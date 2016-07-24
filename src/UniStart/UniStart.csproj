@@ -212,14 +212,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authentication\CreateUserBindingModel.cs" />
-    <Compile Include="Authentication\ModelFactory.cs" />
+    <Compile Include="Authentication\ModelMapper.cs" />
     <Compile Include="Authentication\UserManager.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\JsonConfigurationAttribute.cs" />
     <Compile Include="Controllers\LectureController.cs" />
     <Compile Include="Controllers\PingController.cs" />
-    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="DependencyInjection\DependencyInjection.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -1,4 +1,4 @@
-﻿namespace UniStart.Authentication
+﻿namespace Unistart.Models
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -34,7 +34,7 @@
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Microsoft.Build.Framework.Required]
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]

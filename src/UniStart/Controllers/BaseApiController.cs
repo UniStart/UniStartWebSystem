@@ -1,38 +1,18 @@
-﻿using System.Web.Http;
-using Microsoft.AspNet.Identity;
-using UniStart.Authentication;
-
-namespace UniStart.Controllers
+﻿namespace UniStart.Controllers
 {
+    using System.Web.Http;
+    using Microsoft.AspNet.Identity;
+    using UniStart.Authentication;
+
     public class BaseApiController : ApiController
     {
-        private ModelFactory modelFactory;
-        protected UserManager userManager;
+        protected readonly ModelMapper modelMapper;
+        protected readonly UserManager userManager;
 
         public BaseApiController()
         {
-            userManager = UserManager.CreateUserContext();
-        }
-
-        protected UserManager AppUserManager
-        {
-            get
-            {
-                return this.userManager;
-            }
-        }
-
-        protected ModelFactory TheModelFactory
-        {
-            get
-            {
-                if (modelFactory == null)
-                {
-                    modelFactory = new ModelFactory(this.Request, this.userManager);
-                }
-
-                return modelFactory;
-            }
+            userManager = UserManager.CreateUserManager();
+            modelMapper = new ModelMapper();
         }
 
         protected IHttpActionResult GetErrorResult(IdentityResult result)
