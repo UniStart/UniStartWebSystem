@@ -14,14 +14,11 @@
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-
+            
             GlobalConfiguration.Configure(configuration =>
             {
+                configuration.Routes.MapHttpRoutes();
                 configuration.MapHttpAttributeRoutes();
-                configuration.Routes.MapHttpRoute(
-                    name: "DefaultApi",
-                    routeTemplate: "api/{controller}/{action}/{id}",
-                    defaults: new {id = RouteParameter.Optional});
             });
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
