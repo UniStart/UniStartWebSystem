@@ -14,7 +14,7 @@
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            
+
             GlobalConfiguration.Configure(configuration =>
             {
                 configuration.Routes.MapHttpRoutes();
@@ -24,7 +24,7 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
+
             var container = DependencyInjection.DependencyInjection.RegisterContainer();
 
             // Set the dependency resolver for Web API.
@@ -37,6 +37,9 @@
 
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             json.UseDataContractJsonSerializer = true;
+
+            // For Debugging Azure purposes
+            GlobalConfiguration.Configuration.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
         }
     }
 }
